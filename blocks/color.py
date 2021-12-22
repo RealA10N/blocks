@@ -14,7 +14,7 @@ class Color:
 
         return cls(
             *[
-                int(i * 256)
+                min(int(i * 256), 255)
                 for i in colorsys.hls_to_rgb(h, l, s)
             ]
         )
@@ -63,3 +63,6 @@ class Color:
     def __str__(self) -> str:
         """ Returns a hex representation of the current color. """
         return f'#{self.red:02x}{self.green:02x}{self.blue:02x}'
+
+    def __repr__(self) -> str:
+        return f'<Color {str(self)}>'
