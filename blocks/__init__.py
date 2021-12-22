@@ -1,3 +1,6 @@
-from color import Color
+from .color import Color
+from .ansi import ANSI
 
-__all__ = ['Color']
+from .label import Label
+
+__all__ = ['Color', 'ANSI', 'Label']
