@@ -12,13 +12,20 @@ def strlen(s: str) -> int:
     return len(ANSI_ESCAPE_RE.sub('', s))
 
 
+def strljust(s: str, amount: int, fill: str = ' ') -> str:
+    """ Justify the given string to the left using the 'strlen' function to
+    determine the current length of the string. """
+
+    to_add = max(0, amount - strlen(s))
+    return s + (to_add * fill)
+
+
 def append_lines(src: List[str], add: List[str]) -> None:
     """ Appends each line in the 'add' text block to the end of the
     corresponding line in the 'src' text block. """
 
-    lines = max(len(src), len(add))
-    to_add = max(0, lines - len(src))
+    to_add = max(0, len(add) - len(src))
     src.extend('' for _ in range(to_add))
 
-    for i in range(lines):
+    for i in range(len(add)):
         src[i] += add[i]
