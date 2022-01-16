@@ -1,4 +1,8 @@
 import re
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from typing import TypeVar
+    T = TypeVar('T')
 
 
 class SmartStr(str):
@@ -10,10 +14,10 @@ class SmartStr(str):
     def __len__(self) -> int:
         return len(self._ANSI_ESCAPE_RE.sub('', self))
 
-    def ljust(self, width: int, fill: str = ' ') -> str:
+    def ljust(self: 'T', width: int, fill: str = ' ') -> 'T':
         to_add = max(0, width - len(self))
-        return self + (to_add * fill)
+        return type(self)(self + (to_add * fill))
 
-    def rjust(self, width: int, fill: str = ' ') -> str:
+    def rjust(self: 'T', width: int, fill: str = ' ') -> 'T':
         to_add = max(0, width - len(self))
-        return (to_add * fill) + self
+        return type(self)((to_add * fill) + self)
