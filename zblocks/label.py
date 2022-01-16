@@ -1,4 +1,4 @@
-from blocks import Color, ANSI
+from zblocks import Color, ANSI
 
 
 class Label:
